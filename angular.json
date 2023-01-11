@@ -102,5 +102,8 @@
       }
     }
   },
-  "defaultProject": "note"
+  "defaultProject": "note",
+  "cli": {
+    "analytics": false
+  }
 }
