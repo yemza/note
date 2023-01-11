@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MyNotesPadContainerComponent } from './my-notes-pad-container/my-notes-pad-container.component';
 
 const routes: Routes = [
 
-  
-    {
-      path : '',
-      loadChildren: () => import('./my-note-pad/my-note-pad.module').then(m => m.MyNotePadModule)
-      
-    },
+  {
+    path:"",
+    component: MyNotesPadContainerComponent
+  }
 
-  
+
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ApplicationRoutingModule { }
+export class MyNotePadRoutingModule { }
