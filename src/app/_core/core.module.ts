@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../_shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
+import { httpInterceptorProviders } from './interceptors/http-interceptor-providers';
 
 
 
@@ -8,9 +10,10 @@ import { SharedModule } from '../_shared/shared.module';
   declarations: [],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule
   ],
- // providers: httpInterceptorProviders,
+  providers: httpInterceptorProviders,
 
 })
 export class CoreModule { }
