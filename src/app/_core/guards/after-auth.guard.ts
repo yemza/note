@@ -15,7 +15,7 @@ export class AfterAuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): boolean  {
       if(this.tokenService.loggedIn()) {
-        this.route.navigateByUrl('/note/notes');
+        this.route.navigateByUrl('/notes');
         return false
       }
       return true;

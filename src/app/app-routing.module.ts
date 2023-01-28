@@ -15,7 +15,7 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       {
-        path: 'note',
+        path: 'notes',
         loadChildren: () =>
           import('./application/application.module').then(
             (m) => m.ApplicationModule

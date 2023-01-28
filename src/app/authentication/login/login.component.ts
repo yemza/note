@@ -58,7 +58,7 @@ onSubmit(){
  handelToken(response: any) {
   this.tokenService.handle(response);
   if (this.tokenService.loggedIn()) {
-    this.router.navigateByUrl('/note/notes');
+    this.router.navigateByUrl('/notes');
   }
 }
 

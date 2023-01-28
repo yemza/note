@@ -6,7 +6,7 @@ const routes: Routes = [
 
   
     {
-      path : 'notes',
+      path : '',
       loadChildren: () => import('./my-note-pad/my-note-pad.module').then(m => m.MyNotePadModule)       
     },
 
