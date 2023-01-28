@@ -9,8 +9,8 @@ export class TokenService {
 
 
   set(data: any): void {
-    localStorage.setItem('token', data.jwtToken);
-    localStorage.setItem('id', data.idUser);
+    localStorage.setItem('accessToken', data.accessToken);
+    localStorage.setItem('username', data.username);
   }
 
   handle(data: any): void {
@@ -18,16 +18,16 @@ export class TokenService {
   }
 
   getToken(): string | null {
-    return localStorage.getItem('token');
+    return localStorage.getItem('accessToken');
   }
 
   getId(): any {
-    return localStorage.getItem('id');
+    return localStorage.getItem('username');
   }
 
   remove(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('id');
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('username');
   }
 
   decode(payload: any): any {
@@ -46,7 +46,7 @@ export class TokenService {
     if (token) {
       const payload = this.payload(token);
       if (payload) {
-        return +id === payload.idUser;
+        return id === payload.sub;
       }
     }
     return false;
