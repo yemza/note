@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/_core/services/authentication.service';
+import { ReactiveFormsService } from 'src/app/_core/services/reactive-forms.service';
 import { TokenService } from 'src/app/_core/services/token.service';
 
 @Component({
@@ -18,8 +19,8 @@ export class LoginComponent implements OnInit {
   constructor( private fb : FormBuilder,
     private authenticationService : AuthenticationService,
     private tokenService: TokenService,
-    private router: Router
-
+    private router: Router,
+    private reactiveFormsService: ReactiveFormsService
     ) { }
 
   ngOnInit(): void {
@@ -35,13 +36,19 @@ creationLoginForm(){
 }
 
 onSubmit(){
-  this.subs.add(
+  if(this.loginFormGroup.valid){
+     this.subs.add(
      this.authenticationService.Login(this.loginFormGroup.value , 
       {skip_token: 'true'}).subscribe((response)=>{
         console.log(response)
         this.handelToken(response);
      })
   )
+  }else{
+    this.reactiveFormsService.validateAllFormFields(this.loginFormGroup);
+
+  }
+ 
 
 }
 
@@ -50,11 +57,8 @@ onSubmit(){
    */
  handelToken(response: any) {
   this.tokenService.handle(response);
-  console.log(this.tokenService.loggedIn())
-
   if (this.tokenService.loggedIn()) {
-    console.log(this.tokenService.loggedIn())
-    this.router.navigateByUrl('/note');
+    this.router.navigateByUrl('/note/notes');
   }
 }
 

@@ -1,46 +1,48 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AfterAuthGuard } from './_core/guards/after-auth.guard';
+import { AuthGuard } from './_core/guards/auth.guard';
 import { LayoutComponent } from './_shared/layout/layout.component';
 
-
-
 const routes: Routes = [
-   
   {
-    path : '',
-    redirectTo :'/note',
-    pathMatch :'full'
-  },
+    path: '',
+    component: LayoutComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: '/auth/login',
+        pathMatch: 'full',
+      },
+      {
+        path: 'note',
+        loadChildren: () =>
+          import('./application/application.module').then(
+            (m) => m.ApplicationModule
+          ),
+          canActivate:[AuthGuard]
+      },
 
-  {
-    path :'',
-    component : LayoutComponent,
-      children:[
-        {
-          path : 'note',
-          loadChildren: () => import('./application/application.module').then(m => m.ApplicationModule)
-        
-        },
-      
-        {
-          path : 'auth',
-          loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule)
-        
-        },
-      ]
-  },
-  
+      {
+        path: 'auth',
+        loadChildren: () =>
+          import('./authentication/authentication.module').then(
+            (m) => m.AuthenticationModule
+          )    , canActivate :[AfterAuthGuard]
 
-  {
-    path : '**',
-    redirectTo :'/note',
-    pathMatch :'full'
-  },
+      },
 
+      {
+        path: '**',
+        redirectTo: '/auth/login',
+        pathMatch: 'full',
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
