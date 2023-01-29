@@ -11,8 +11,10 @@ import { TokenService } from 'src/app/_core/services/token.service';
 export class MyNotesPadContainerComponent implements OnInit {
 
   notes : INote[]=[];
+  noteSelected: INote;
 
-  constructor(private noteService : NoteService, private tokenService : TokenService) { }
+  constructor(private noteService : NoteService, 
+              private tokenService : TokenService) { }
 
   ngOnInit(): void {
     this.getAllNoteByUserId()
@@ -21,9 +23,14 @@ export class MyNotesPadContainerComponent implements OnInit {
 
   getAllNoteByUserId(){
     this.noteService.getAllNoteByUserId(this.tokenService.getUserId(this?.tokenService?.getToken())).subscribe((response)=>{
-      console.log(response)
       this.notes =response;
     })
   }
 
+
+  
+  noteIdSelected(noteId: any){
+    this.noteSelected = this.notes.find(note =>note.noteId == noteId)
+
+  }
 }
