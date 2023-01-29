@@ -11,23 +11,29 @@ export class TokenService {
   set(data: any): void {
     localStorage.setItem('accessToken', data.accessToken);
     localStorage.setItem('username', data.username);
+    localStorage.setItem('userId', data.userId);
   }
 
   handle(data: any): void {
     this.set(data);
   }
 
-  getToken(): string | null {
+  getToken():any{
     return localStorage.getItem('accessToken');
   }
 
   getId(): any {
+    return localStorage.getItem('userId');
+  }
+  getUsername(): any {
     return localStorage.getItem('username');
   }
 
   remove(): void {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('username');
+    localStorage.removeItem('userId');
+
   }
 
   decode(payload: any): any {
@@ -41,12 +47,13 @@ export class TokenService {
 
   isValid(): boolean {
     const token = this.getToken();
+    const username = this.getUsername();
     const id = this.getId();
 
     if (token) {
       const payload = this.payload(token);
       if (payload) {
-        return id === payload.sub;
+        return +id === payload.userId &&  username === payload.sub;
       }
     }
     return false;
@@ -63,7 +70,7 @@ export class TokenService {
 
 
   getUserId(token : string){
-    return this.payload(token).idUser
+    return this.payload(token).userId
   }
 
   loggedIn(): boolean {
