@@ -1,15 +1,15 @@
 import { IUser } from "./i-user";
 
 export interface INote {
-  noteId: number;
+  noteId?: number;
 
-  noteTitle: String;
+  noteTitle?: String;
 
-  noteDescription: String;
+  noteDescription?: String;
 
-  noteWrittenDate: Date;
+  noteWrittenDate?: Date;
 
-  noteModifiedDate: Date;
+  noteModifiedDate?: Date;
 
-  noteUser: IUser;
+  noteUser?: IUser;
 }

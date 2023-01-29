@@ -31,6 +31,15 @@ export class MyNotesPadContainerComponent implements OnInit {
   
   noteIdSelected(noteId: any){
     this.noteSelected = this.notes.find(note =>note.noteId == noteId)
+  }
 
+  saveNewNoteEvent(newNote : INote){
+    newNote.noteUser={
+      userId : +this.tokenService.getUserId(this?.tokenService?.getToken())
+    }
+    newNote.noteWrittenDate = new Date();
+    this.noteService.saveNewNote(newNote).subscribe((response)=>{
+      console.log(response);
+    })
   }
 }

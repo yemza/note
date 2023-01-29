@@ -1,61 +1,39 @@
-<form [formGroup]="noteFormGroup" (ngSubmit)="SaveNote()">
-<div class="w-full h-full">
-    <div
-      class="flex items-center justify-between px-3 py-2 border-b dark:border-gray-600"
-    >
-      <div
-        class="flex flex-wrap items-center divide-gray-200 sm:divide-x dark:divide-gray-600"
-      >
+<form [formGroup]="noteFormGroup" (ngSubmit)="SaveNote()" class="h-full ">
+    <div class="flex items-center justify-between px-3 py-2 border-b dark:border-gray-600">
+      <div class="flex flex-wrap items-center divide-gray-200 sm:divide-x dark:divide-gray-600">
         <div class="flex items-center space-x-1 sm:pr-4">
-          <button
-            type="button"
-            class="fa-regular fa-square-check p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
-          >
+          <button type="button"
+            class="fa-regular fa-square-check p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
           </button>
-          <button
-            type="button"
-            class="fa-solid fa-list-ol p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
-          >
+          <button type="button"
+            class="fa-solid fa-list-ol p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
           </button>
-          <button
-            type="button"
-            class="fa-solid fa-list p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
-          >
-           
-                  </button>
-          <button
-            type="button"
-            class="fa-solid fa-list-ul p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
-          >
+          <button type="button"
+            class="fa-solid fa-list p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+
+          </button>
+          <button type="button"
+            class="fa-solid fa-list-ul p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
           </button>
         </div>
       </div>
-      <button
-        type="submit"
-        data-tooltip-target="tooltip-fullscreen"
-        class="fa-regular fa-floppy-disk p-2 text-black-500 bg-purple-500	
+      <button type="submit" data-tooltip-target="tooltip-fullscreen" class="fa-regular fa-floppy-disk p-2 text-black-500 bg-purple-500	
         rounded cursor-pointer sm:ml-auto 
-        dark:text-gray-400 dark:hover:text-white"
-
-      >
+        dark:text-gray-400 dark:hover:text-white">
       </button>
     </div>
- 
+
     <div class="relative flex w-full flex-wrap items-stretch ">
-    
-        <input 
-        formControlName="noteTitle"
-        type="text" placeholder="Title" class="font border-none focus:border-none rounded-lg outline-none 
+      <input formControlName="noteTitle" type="text" placeholder="Title" class="font border-none focus:border-none rounded-lg outline-none 
         focus:outline-none focus:ring-0 px-3 py-3 placeholder-slate-800 text-slate-800 
         relative bg-white bg-white
-         w-full pl-10"/>
-      </div>
-    <label for="editor" class="sr-only">Publish post</label>
-    <textarea
-    formControlName="noteDescription"
-      id="editor"
-      class="font border-none rounded-lg outline-none focus:outline-none focus:ring-0 h-5/6 w-full text-sm text-gray-800 bg-white pl-5"
-      placeholder="Write an article..."
-    ></textarea>
-  </div>
+         w-full pl-10" />
+    </div>
+    <div class="relative flex w-full h-full flex-wrap items-stretch ">
+      <label for="editor" class="sr-only">Publish post</label>
+      <textarea formControlName="noteDescription" id="editor"
+        class="h-5/6 font border-none rounded-lg outline-none focus:outline-none focus:ring-0 w-full text-sm text-gray-800 bg-white pl-5"
+        placeholder="Write an article..."></textarea>
+    </div>
+
 </form>

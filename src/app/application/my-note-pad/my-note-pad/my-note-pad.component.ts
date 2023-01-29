@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { INote } from 'src/app/_core/models/i-note';
 
@@ -10,6 +10,7 @@ import { INote } from 'src/app/_core/models/i-note';
 export class MyNotePadComponent implements OnInit {
   @Input() noteSelected: INote;
   noteFormGroup: FormGroup;
+  @Output() newNoteEvent = new EventEmitter();
 
   constructor(private fb: FormBuilder) {}
 
@@ -42,6 +43,6 @@ export class MyNotePadComponent implements OnInit {
 
 
   SaveNote(){
-    console.log(this.noteFormGroup.value)
+    this.newNoteEvent.emit(this.noteFormGroup.value);
   }
 }

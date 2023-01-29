@@ -8,6 +8,7 @@
         <div class="col-span-4 col-start-2 row-start-1 row-span-6 bg-white rounded-lg shadow-xl">
             <app-my-note-pad
             [noteSelected]="noteSelected"
+            (newNoteEvent)="saveNewNoteEvent($event)"
             ></app-my-note-pad>
         </div>
       </div>
